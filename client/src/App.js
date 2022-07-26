@@ -11,15 +11,18 @@ import CompleteCalendar from './components/Calendar/CompleteCalendar';
 import CalendarState from './contexts/calendar/calendarState';
 import Home from './components/StudentDashboard/Home';
 import calendar from './contexts/calendar/calendarContext';
+import teacher from './contexts/Teacher/TeacherContext';
+import TeacherState from './contexts/Teacher/TeacherState';
 import Stats from './components/Stats/Stats';
 import Grievance from './components/Grievance/Grievance';
 
 function App() {
-  const cal=useContext(calendar)
+  const te=useContext(teacher)
 
   return (
+
     <div className="App">
-      <CalendarState>
+      <TeacherState>
       <BrowserRouter>
       <Routes>
           <Route path="/" element={<MainLogin/>}/>
@@ -34,7 +37,7 @@ function App() {
           <Route exact path='/calendar' element={<CompleteCalendar/>}/>
       </Routes>
       </BrowserRouter>
-      </CalendarState>
+      </TeacherState>
     </div>
   );
 }

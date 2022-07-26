@@ -3,36 +3,33 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 const AdminLogin = () => {
-	const [user, setUser] = useState("");
-	const [password, setPassword] = useState("");
-	let navigate=useNavigate()
-	const routeChange=()=>{
-		navigate('/admin')
-	}
-	const [error, setError] = useState("");
+	const [credentials, setCredentials] = useState({userId: "", password: ""}) 
+    let history = useNavigate();
 
-	const handleUser = (e) => {
-		setUser(e.target.value)
-	};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await fetch("http://localhost:8080/auth/admin/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({userId: credentials.userId, password: credentials.password})
+        });
+        const json = await response.json()
+        console.log(json);
+        if (json.authToken){
+            localStorage.setItem('auth-token', json.authToken); 
+            history("/admin");
 
-	const handlePassword = (e) => {
-		setPassword(e.target.value)
-	};
+        }
+        else{
+            alert("Invalid credentials");
+        }
+    }
 
-	const handleSubmit = async (e) => {
-		e.preventDefault()
-		const user=await fetch("http://localhost:8000/auth/admin",{
-			'method':'POST',
-			'body':{
-				'userId':user,
-				'password':password
-			}
-		})
-		const data =user.json()
-		localStorage.setItem('auth-token',data)
-		localStorage.setItem('type','admin')
-		window.push('/')
-	};
+    const onChange = (e)=>{
+        setCredentials({...credentials, [e.target.name]: e.target.value})
+    }
 
 	return (
 		<div className="login_container">
@@ -43,8 +40,9 @@ const AdminLogin = () => {
 						<input
 							type="text"
 							placeholder="Admin ID"
-							name="user"
-							onChange={handleUser}
+							name="userId"
+							value={credentials.userId}
+							onChange={onChange}
 							required
 							className="input"
 						/>
@@ -52,11 +50,12 @@ const AdminLogin = () => {
 							type="password"
 							placeholder="Password"
 							name="password"
-							onChange={handlePassword}
+							value={credentials.password}
+							onChange={onChange}
 							required
 							className="input"
 						/>
-						{error && <div className="error_msg">{error}</div>}
+						{/* {error && <div className="error_msg">{error}</div>} */}
 						<button type="submit" className="green_btn">
 							Sign In
 						</button>

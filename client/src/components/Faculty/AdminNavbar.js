@@ -18,7 +18,7 @@ const AdminNavbar = () => {
         <div className="search">
         </div>
         <div className="dp-title">
-          Admin
+          Admin : Soham
         </div>
         <div className="items">
           
