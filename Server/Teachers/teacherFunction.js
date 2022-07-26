@@ -38,12 +38,14 @@ router.post('/addStu',Verifier,async (req,res)=>{
 router.post('/sched',Verifier,async (req,res)=>{
     try {
         const teacher = req.user.id;
-        const student = await lectures.create({
+        const lecture = await lectures.create({
             teacherId:teacher,
             subject:req.body.subject,
+            date : Date(req.body.date)
 
         })
-        console.log(student)
+        console.log(lecture)
+        res.status(200).json(lecture)
     } catch (error) {
         console.log(error)
         res.status(500).json({error})

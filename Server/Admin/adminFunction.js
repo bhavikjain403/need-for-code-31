@@ -1,21 +1,22 @@
 const express =  require('express');
 const Verifier = require('../middlewares/Verifier');
 const events = require('../models/events');
-const Student = require('../models/teacher')
+const Teacher = require('../models/teacher')
 const router = express.Router()
 
 //
 router.post('/addTeach',Verifier,async (req,res)=>{
     try {
         const admin = req.user.id;
-        const teacher = await Student.create({
+        const teacher = await Teacher.create({
             name:req.body.name,
             adminId:admin,
             userId:req.body.userId,
             password:req.body.password,
             subject:req.body.subject
         })
-        console.log(student)
+        console.log(teacher)
+        res.status(200).json(teacher)
     } catch (error) {
         console.log(error)
         res.status(500).json({error})
@@ -26,11 +27,13 @@ router.post('/addTeach',Verifier,async (req,res)=>{
 router.post('/addEvent',Verifier,async (req,res)=>{
     try {
         const admin = req.user.id;
-        const student = await events.create({
+        const event = await events.create({
             adminId:admin,
-            name:req.body
+            name:req.body.name,
+            desc : req.body.desc
         })
-        console.log(student)
+        console.log(event)
+        res.status(200).json(event)
     } catch (error) {
         console.log(error)
         res.status(500).json({error})

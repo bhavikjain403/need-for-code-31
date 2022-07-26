@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const teacher = require('./teacher')
 
-const studDataSchema = new mongoose.Schema({
+const lectureSchema = new mongoose.Schema({
     teacherId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:teacher,
@@ -11,9 +11,8 @@ const studDataSchema = new mongoose.Schema({
     },
     time:{
         type:Date,
-        default:Date.now,
     }
 
 })
 
-module.exports =  mongoose.model('StudData',studDataSchema)
+module.exports =  mongoose.model('StudData',lectureSchema)
