@@ -1,6 +1,6 @@
 const mongoose =require('mongoose')
 
-const adminSchema = new mongoose.Schema({
+const teacherSchema = new mongoose.Schema({
     name:{
         type:String,
         required:true
@@ -17,10 +17,16 @@ const adminSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    teachers :{
+    subject:{
+        type:String,
+        required:true
+    },
+    students:{
         type:[{
-        name: String
-    }]} 
+            name:String
+        }]
+    },
+   
 })
 
-module.exports = new mongoose.model('Admin',adminSchema)
+module.exports = new mongoose.model('Teacher',teacherSchema)

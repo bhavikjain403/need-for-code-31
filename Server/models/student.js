@@ -23,6 +23,9 @@ const StudentSchema = new mongoose.Schema({
             marks : Number
         }
         ],
+    },
+    complaints: {
+        type : [String]
     }
 })
 
