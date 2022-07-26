@@ -8,7 +8,7 @@ const JWT_SECRET = require("./config.js");
 
 
 // Creating a new user
-router.post('/auth/admin', [
+router.post('/auth/student', [
     body('name').isString(),
     body('user').isEmail(),
     body('password').isString()
@@ -52,7 +52,7 @@ router.post('/auth/admin', [
 })
 
 //login endpoint
-router.post('/auth/admin/login', [
+router.post('/auth/student/login', [
     body('user').isString(),
     body('password').exists()
 ],async (req, res) => {
