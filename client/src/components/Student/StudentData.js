@@ -1,11 +1,11 @@
-import "./FacultyData.css";
+import "./StudentData.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows} from "../../DummyTeacher";
+import { userColumns, userRows} from "../../DummyStudent";
 import { useState } from "react";
 import { Modal, Button, ModalHeader, ModalBody } from "reactstrap";
-import TeacherRegister from "../Landing/TeacherRegister";
+import StudentRegister from "../Landing/StudentRegister";
 
-const FacultyData = () => {
+const StudentData = () => {
   const [data, setData] = useState(userRows);
   const [modal, setModal] = useState(false);
 
@@ -39,13 +39,13 @@ const FacultyData = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Professor
+        Student
         <Modal isOpen={modal}>
-            <ModalHeader toggle={toggleModal}>Add New Professor</ModalHeader>
-            <ModalBody><TeacherRegister/></ModalBody>
+            <ModalHeader toggle={toggleModal}>Add New Student</ModalHeader>
+            <ModalBody><StudentRegister/></ModalBody>
         </Modal>
             <Button outline onClick={toggleModal}>
-            <span className='fa fa-pencil'>Add New Professor</span>
+            <span className='fa fa-pencil'>Add New Student</span>
             </Button>
       </div>
       <DataGrid
@@ -60,4 +60,4 @@ const FacultyData = () => {
   );
 };
 
-export default FacultyData;
+export default StudentData;
