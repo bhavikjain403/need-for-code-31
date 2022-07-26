@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const bodyparser = require('body-parser')
 const  app =express() 
 const people =['Bhavik', 'Soham', 'hardik', 'Shubham']
-const port = 3000
+const port = 8080
 
 app.use(express.json())
 app.use(bodyparser.urlencoded({}))
@@ -14,5 +14,5 @@ app.get('/',(req,res)=>{
 })
 
 app.listen(port,()=>{
-    console.log('Server listening on port 3000...')
+    console.log('Server listening on port 8080...')
 })
