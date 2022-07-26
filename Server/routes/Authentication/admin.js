@@ -3,8 +3,8 @@ const router = express.Router()
 const bcrpyt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { body , validationResult} = require("express-validator")
-const Admin = require("./models/admin.js")
-const JWT_SECRET = require("./config.js");
+const Admin = require("C:/Users/Soham Rane/OneDrive/Desktop/nfc1/need-for-code-31/Server/models/admin.js")
+const JWT_SECRET = require("C:/Users/Soham Rane/OneDrive/Desktop/nfc1/need-for-code-31/Server/config.js");
 
 
 // Creating a new user

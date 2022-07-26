@@ -1,9 +1,14 @@
 const mongoose =require('mongoose')
+const Admin = require('./admin')
 
 const teacherSchema = new mongoose.Schema({
     name:{
         type:String,
         required:true
+    },
+    adminId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:Admin
     },
     userId:{
         type:String,
@@ -20,12 +25,7 @@ const teacherSchema = new mongoose.Schema({
     subject:{
         type:String,
         required:true
-    },
-    students:{
-        type:[{
-            name:String
-        }]
-    },
+    }
    
 })
 
