@@ -3,7 +3,7 @@ import axios from "axios";
 import "./login.css";
 
 const TeacherLogin = () => {
-	const [data, setData] = useState({ email: "", password: "" });
+	const [data, setData] = useState({ user: "", password: "" });
 	const [error, setError] = useState("");
 
 	const handleChange = ({ currentTarget: input }) => {
@@ -13,7 +13,7 @@ const TeacherLogin = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/auth";
+			const url = "http://localhost:8080/auth/teacher/login";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
 			window.location = "/";

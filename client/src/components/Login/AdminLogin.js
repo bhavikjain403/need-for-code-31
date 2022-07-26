@@ -1,31 +1,33 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 const AdminLogin = () => {
-	const [data, setData] = useState({ email: "", password: "" });
+	const [user, setUser] = useState("");
+	const [password, setPassword] = useState("");
+	let navigate=useNavigate()
+	const routeChange=()=>{
+		navigate('/admin')
+	}
 	const [error, setError] = useState("");
 
-	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
+	const handleUser = (e) => {
+		setUser(e.target.value)
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const url = "http://localhost:8080/api/auth";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
-			window.location = "/";
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
+	const handlePassword = (e) => {
+		setPassword(e.target.value)
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+			if("bhavik"===user && "jain"===password)
+			{
+				routeChange()
 			}
-		}
+			else{
+				setError("Please enter valid Admin ID and password")
+			}
 	};
 
 	return (
@@ -35,11 +37,10 @@ const AdminLogin = () => {
 					<form className="form_container" onSubmit={handleSubmit}>
 						<h1 className="h1-login">Admin Login</h1>
 						<input
-							type="email"
-							placeholder="Email"
-							name="email"
-							onChange={handleChange}
-							value={data.email}
+							type="text"
+							placeholder="Admin ID"
+							name="user"
+							onChange={handleUser}
 							required
 							className="input"
 						/>
@@ -47,8 +48,7 @@ const AdminLogin = () => {
 							type="password"
 							placeholder="Password"
 							name="password"
-							onChange={handleChange}
-							value={data.password}
+							onChange={handlePassword}
 							required
 							className="input"
 						/>
