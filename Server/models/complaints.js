@@ -4,7 +4,7 @@ const student = require('./student')
 const complaintSchema = new mongoose.Schema({
     studentId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:student,
+        ref:'student',
         required:true
     },
     subject:{

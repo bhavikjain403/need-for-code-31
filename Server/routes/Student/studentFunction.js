@@ -2,7 +2,7 @@ const express =  require('express');
 const Verifier = require('../../middlewares/Verifier');
 const complaints = require('../../models/complaints');
 const lectures = require('../../models/lectures');
-const StudData = require('../../models/marks');
+const StudData = require('../../models/StudData');
 const Student = require('../../models/student');
 const router = express.Router()
 

@@ -8,11 +8,10 @@ const teacherSchema = new mongoose.Schema({
     },
     adminId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:Admin
+        ref:'Admin'
     },
     userId:{
-        type:String,
-        required:true
+        type:String
     },
     password:{
         type:String,
@@ -23,8 +22,7 @@ const teacherSchema = new mongoose.Schema({
         default: Date.now
     },
     subject:{
-        type:String,
-        required:true
+        type:String
     }
 })
 
