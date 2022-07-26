@@ -3,6 +3,7 @@ const Verifier = require('../middlewares/Verifier');
 const events = require('../models/events');
 const Teacher = require('../models/teacher')
 const router = express.Router()
+const Admin = require('../models/admin')
 
 //
 router.post('/addTeach',Verifier,async (req,res)=>{
@@ -40,5 +41,23 @@ router.post('/addEvent',Verifier,async (req,res)=>{
     }
 })
 
+router.get('/getAllTeach',Verifier,async (req,res)=>{
+    try {
+        const adminId = req.user.id;
+        console.log(adminId)
+        const admin = await Admin.findById(adminId)
+        console.log(admin)
+        const record = await Teacher.find()
+        if(!record){
+            console.log('no records added')
+            res.json({'msg':'No records have been added for this student'})
+        }
+        console.log(record)
+        res.status(200).json(record)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error})
+    }
+})
 
 module.exports = router
