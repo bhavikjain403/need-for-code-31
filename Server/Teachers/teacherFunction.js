@@ -4,6 +4,7 @@ const lectures = require('../models/lectures');
 const Student = require('../models/student');
 const data = require('../models/data')
 const router = express.Router()
+const attendance = require('../models/attendance')
 
 // endpoint for teacher to add student data
 router.post('/addStu',Verifier,async (req,res)=>{
@@ -46,6 +47,24 @@ router.post('/sched',Verifier,async (req,res)=>{
         })
         console.log(lecture)
         res.status(200).json(lecture)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error})
+    }
+})
+
+//endpoint for teacher to mark attendance
+router.post('/attendance',Verifier,async (req,res)=>{
+    try {
+        const teacher = req.user.id;
+        const attend = await attendance.create({
+            teacherId:teacher,
+            attendance: req.body.file,
+            date : Date(req.body.date)
+
+        })
+        console.log(attend)
+        res.status(200).json(attend)
     } catch (error) {
         console.log(error)
         res.status(500).json({error})
