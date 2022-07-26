@@ -31,6 +31,7 @@ const TeacherRegister = () => {
             });
             const parsedRes =res.json()
 			// navigate("/");
+            // Navigate to Display Faculty
 			console.log(res.message);
 		} catch (error) {
 			if (

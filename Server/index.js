@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const bodyparser = require('body-parser')
 const  app =express() 
 const connect = require('./database')
-const port = 3000
+const port = 8080
 const adminAuth = require('./routes/Authentication/admin')
 const teacherAuth = require('./routes/Authentication/teacher')
 const studentAuth = require('./routes/Authentication/student')
@@ -25,5 +25,5 @@ app.use('/student',student)
 app.use('/admin',admin)
 
 app.listen(port,()=>{
-    console.log('Server listening on port 3000...')
+    console.log('Server listening on port 8080...')
 })
