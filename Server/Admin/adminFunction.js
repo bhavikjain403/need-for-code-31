@@ -1,11 +1,11 @@
 const express =  require('express');
-const Verifier = require('../../middlewares/Verifier');
-const events = require('../../models/events');
-const teacher = require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/models/teacher.js')
+const Verifier = require('../middlewares/Verifier');
+const events = require('../models/events');
+const Student = require('../models/teacher')
 const router = express.Router()
 
 //
-router.post('/admin/addTeach',Verifier,async (req,res)=>{
+router.post('/addTeach',Verifier,async (req,res)=>{
     try {
         const admin = req.user.id;
         const teacher = await Student.create({
@@ -23,7 +23,7 @@ router.post('/admin/addTeach',Verifier,async (req,res)=>{
 })
 
 // endpoint for teacher to lectures 
-router.post('/admin/addEvent',Verifier,async (req,res)=>{
+router.post('/addEvent',Verifier,async (req,res)=>{
     try {
         const admin = req.user.id;
         const student = await events.create({

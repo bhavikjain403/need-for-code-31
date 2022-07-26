@@ -3,24 +3,24 @@ const Teacher = require('./teacher')
 
 const studentSchema = new mongoose.Schema({
     name:{
-        type:String
+        type:String,
     },
     teacherId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Teacher'
+        ref:Teacher
     },
     userId:{
-        type:String
+        type:String,
     },
     password:{
-        type:String
+        type:String,
     },
     date:{
         type: Date,
         default: Date.now
     },
     subject:{
-        type:String
+        type:String,
     },
     
 })

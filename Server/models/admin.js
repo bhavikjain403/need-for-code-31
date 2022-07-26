@@ -2,13 +2,16 @@ const mongoose =require('mongoose')
 
 const adminSchema = new mongoose.Schema({
     name:{
-        type:String
+        type:String,
+        
     },
     userId:{
-        type:String
+        type:String,
+    
     },
     password:{
-        type:String
+        type:String,
+        
     },
     date:{
         type: Date,

@@ -2,20 +2,16 @@ const express = require('express')
 const { body, validationResult } = require('express-validator')
 const bcrpyt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const teacher = require('../../models/teacher')
 const router = express.Router()
+const JWT_SECRET =require('../../config')
 
-const teacher =require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/models/teacher.js')
-const admin = require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/models/admin.js')
-const student = require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/models/student.js')
-const config = require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/config.js')
-const JWT_SECRET =config.JWT_SECRET
-
-// Creating a new user
-router.post('/auth/teacher', [
+router.post('/', [
     body('name').isString(),
     body('userId').isString(),
-    body('password').isString().isLength({min:5})
+    body('password').isString()
 ],async (req, res) => {
+    //res.send(200).json({"hello":123})
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         console.log('not empty')
@@ -24,7 +20,7 @@ router.post('/auth/teacher', [
     try {
         
         console.log(req.body)
-        const u = await teacher.findOne({ userId: req.body.userId })
+        const u = await teacher.findOne({ user: req.body.user })
         if(u){
             // console.log(u)
             return res.status(400).json({ "msg": "A user with this email already exists" })
@@ -36,85 +32,7 @@ router.post('/auth/teacher', [
             
             let user = await teacher.create({
                 name: req.body.name,
-                userId: req.body.userId,
-                password: pass  
-            })
-            const data = {
-                user:{
-                    id : user.id
-                }
-            }
-            const authToken = jwt.sign(data,JWT_SECRET)
-            return res.json({authToken})
-        }
-    }
-    catch(err) {
-
-        return res.status(500).send(err)
-    }
-
-})
-
-//login endpoint
-router.post('auth/teacher/login', [
-    body('userId').isString(),
-    body('password').exists()
-],async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        res.status(400).json({ error: errors.array() })
-    }
-    try {
-        console.log(req.body)
-        let user = await teacher.findOne({ userId : req.body.userId  })
-        if(!user){
-            console.log('user')
-            return res.status(400).json({"msg":"Please login with valid credentials"})
-        }
-        const comparePass =  bcrpyt.compare(req.body.password,user.password)
-        if(!comparePass){
-            console.log('compare')
-            return res.status(400).json({"msg":"Please login with valid credentials"})
-        }
-        const data = {
-            user:{
-                id : user.id
-            }
-        }
-        const authToken = jwt.sign(data,JWT_SECRET)
-        return res.json({authToken})
-    }
-    catch(err){
-        res.status(500).send("Internal Error")
-    }
-})
-
-router.post('/auth/student', [
-    body('name').isString(),
-    body('userId').isString(),
-    body('password').isString()
-],async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        console.log('not empty')
-        return res.status(400).json({ error: errors.array() })
-    }
-    try {
-        
-        console.log(req.body)
-        const u = await student.findOne({ userId: req.body.userId })
-        if(u){
-            // console.log(u)
-            return res.status(400).json({ "msg": "A user with this email already exists" })
-        }
-        else{
-            //student.create returns a promise
-            const salt = await bcrpyt.genSalt(10)
-            const pass = await bcrpyt.hash(req.body.password,salt)
-            
-            let user = await student.create({
-                name: req.body.name,
-                userId: req.body.userId,
+                user: req.body.user,
                 password: pass  
             })
             const data = {
@@ -131,9 +49,7 @@ router.post('/auth/student', [
     }
 
 })
-
-//login endpoint
-router.post('auth/student/login', [
+router.post('/login', [
     body('userId').isString(),
     body('password').exists()
 ],async (req, res) => {
@@ -143,7 +59,7 @@ router.post('auth/student/login', [
     }
     try {
         console.log(req.body)
-        let user = await student.findOne({ userId : req.body.userId  })
+        let user = await teacher.findOne({ user : req.body.user  })
         if(!user){
             console.log('user')
             return res.status(400).json({"msg":"Please login with valid credentials"})
@@ -166,82 +82,6 @@ router.post('auth/student/login', [
     }
 })
 
-router.post('/auth/admin', [
-    body('name').isString(),
-    body('userId').isString(),
-    body('password').isString()
-],async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        console.log('not empty')
-        return res.status(400).json({ error: errors.array() })
-    }
-    try {
-        
-        console.log(req.body)
-        const u = await admin.findOne({ userId: req.body.userId })
-        if(u){
-            console.log(u)
-            return res.status(400).json({ "msg": "A user with this email already exists" })
-        }
-        else{
-            //Users.create returns a promise
-            const salt = await bcrpyt.genSalt(10)
-            const pass = await bcrpyt.hash(req.body.password,salt)
-            
-            let user = await admin.create({
-                name: req.body.name,
-                userId: req.body.userId,
-                password: pass  
-            })
-            const data = {
-                user:{
-                    id : user.id
-                }
-            }
-            const authToken = jwt.sign(data,JWT_SECRET)
-            return res.json({authToken})
-        }
-    }
-    catch(err) {
-        return res.status(500).send("Internal Error")
-    }
-
-})
-
-//login endpoint
-router.post('/auth/admin/login', [
-    body('userId').isString(),
-    body('password').exists()
-],async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        res.status(400).json({ error: errors.array() })
-    }
-    try {
-        console.log(req.body)
-        let user = await admin.findOne({ userId : req.body.userId  })
-        if(!user){
-            console.log('user')
-            return res.status(400).json({"msg":"Please login with valid credentials"})
-        }
-        const comparePass =  bcrpyt.compare(req.body.password,user.password)
-        if(!comparePass){
-            console.log('compare')
-            return res.status(400).json({"msg":"Please login with valid credentials"})
-        }
-        const data = {
-            user:{
-                id : user.id
-            }
-        }
-        const authToken = jwt.sign(data,JWT_SECRET)
-        return res.json({authToken})
-    }
-    catch(err){
-        res.status(500).send("Internal Error")
-    }
-})
 
 module.exports = router
 

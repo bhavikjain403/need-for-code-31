@@ -1,18 +1,19 @@
 const express =  require('express');
-const Verifier = require('../../middlewares/Verifier');
-const complaints = require('../../models/complaints');
-const lectures = require('../../models/lectures');
-const StudData = require('../../models/StudData');
-const Student = require('../../models/student');
+const Verifier = require('../middlewares/Verifier');
+const complaints = require('../models/complaints');
+const lectures = require('../models/lectures');
+const Data = require('../models/data');
+const Student = require('../models/student');
 const router = express.Router()
 
 // endpoint for student to access all his/her data
-router.post('/student/getAll',Verifier,async (req,res)=>{
+router.get('/getAll',Verifier,async (req,res)=>{
     try {
         const studId = req.user.id;
-        const student = await Student.findbyId({id:studId})
+        console.log(studId)
+        const student = await Student.findById(studId)
         console.log(student)
-        const record = await StudData.findAll({studentId:studId})
+        const record = await Data.find()
         if(!record){
             console.log('no records added')
             res.json({'msg':'No records have been added for this student'})
@@ -26,7 +27,7 @@ router.post('/student/getAll',Verifier,async (req,res)=>{
 })
 
 // endpoint for student to add complaints 
-router.post('/student/complainr',Verifier,async (req,res)=>{
+router.post('/complaint',Verifier,async (req,res)=>{
     try {
         const studId = req.user.id;
         const complaint = await complaints.create({
