@@ -8,11 +8,13 @@ import {
     Nav,
     NavbarBrand
 } from 'reactstrap';
+import FacultyData from '../Faculty/FacultyData.js'
   
 function AdminLanding() {
     const [isOpen, setIsOpen] = useState(false);
   
     return (
+        <>
         <div style={{
             display: 'block', width: "100%"
         }}>
@@ -31,6 +33,8 @@ function AdminLanding() {
                 </Collapse>
             </Navbar>
         </div >
+        <FacultyData/>
+        </>
     );
 }
   

@@ -8,11 +8,13 @@ import {
     Nav,
     NavbarBrand
 } from 'reactstrap';
+import StudentRegister from './StudentRegister';
   
 function TeacherLanding() {
     const [isOpen, setIsOpen] = useState(false);
   
     return (
+        <>
         <div style={{
             display: 'block', width: "100%"
         }}>
@@ -31,6 +33,8 @@ function TeacherLanding() {
                 </Collapse>
             </Navbar>
         </div >
+        <StudentRegister/>
+        </>
     );
 }
   
