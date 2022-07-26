@@ -8,6 +8,7 @@ import {
     Nav,
     NavbarBrand
 } from 'reactstrap';
+import Home from '../StudentDashboard/Home';
   
 function StudentLanding() {
     const [isOpen, setIsOpen] = useState(false);

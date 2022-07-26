@@ -1,0 +1,14 @@
+.leftf{
+    width: 380px;
+    margin-bottom: 10px;
+}
+.full{
+    width:100%;
+    background-color: rgb(252, 252, 252);
+}
+.sta{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 1rem;
+}

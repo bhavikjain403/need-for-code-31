@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css ??family=Oxygen:wght@300;400;700&display=swap");
+/*color variables*/
+.wrapperca {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.card {
+  background-color: #f8efff;
+  overflow: hidden;
+  box-shadow: 5px 3px #e1e5ee;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+}
+.card__title {
+  padding: 1rem;
+}
+.card__description {
+  padding: 0 1rem;
+}
+.card__btn {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid #600074;
+  background: transparent;
+  color: #600074;
+  border-radius: 0.2rem;
+  transition: background 200ms ease-in, color 200ms ease-in;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.card:hover .card__btn {
+  background: #600074;
+  color: white;
+}
