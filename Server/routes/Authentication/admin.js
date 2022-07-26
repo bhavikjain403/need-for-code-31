@@ -2,12 +2,12 @@ const express = require('express')
 const { body, validationResult } = require('express-validator')
 const bcrpyt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const admin = require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/models/admin.js')
+const admin = require('../../models/admin')
 const router =express.Router()
-const JWT_SECRET =require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/config.js')
+const JWT_SECRET =require('../../config')
 
 // Creating a new user
-router.post('/auth/admin', [
+router.post('/', [
     body('name').isString(),
     body('userId').isString(),
     body('password').isString()
@@ -51,7 +51,7 @@ router.post('/auth/admin', [
 })
 
 //login endpoint
-router.post('/auth/admin/login', [
+router.post('/login', [
     body('userId').isString(),
     body('password').exists()
 ],async (req, res) => {

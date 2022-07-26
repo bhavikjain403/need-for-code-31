@@ -2,25 +2,21 @@ const mongoose = require('mongoose')
 const student = require('./student')
 const teacher = require('./teacher')
 
-const studDataSchema = new mongoose.Schema({
+const DataSchema = new mongoose.Schema({
     studentId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'student',
-        required:true
+        ref:student,
     },
     teacherId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'teacher',
-        required:true
+        ref:teacher,
     },
     subject:{
         type:String,
-        required:true
     },
     marks:{
         type:Number,
-        required:true
     }
 })
 
-module.exports =   mongoose.model('StudData',studDataSchema) 
+module.exports =  mongoose.models['Data'] || mongoose.model('Data',DataSchema) 
