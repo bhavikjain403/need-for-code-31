@@ -1,3 +1,3 @@
-const JWT_SECRET = "4567891237"
+const JWT_SECRET = 'sbjcbwjc@j'
 
-module.exports({JWT_SECRET});
+module.exports = JWT_SECRET
