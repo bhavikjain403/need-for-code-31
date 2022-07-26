@@ -1,13 +1,8 @@
 import { useState } from 'react';
-import {
-    Navbar,
-    NavItem,
-    NavbarToggler,
-    Collapse,
-    NavLink,
-    Nav,
-    NavbarBrand
-} from 'reactstrap';
+import '../StudentDashboard/Home.css'
+import Navbar from '../Navbar/Navbar';
+import AdminSidebar from '../Faculty/AdminSidebar.js';
+import AdminNavbar from '../Faculty/AdminNavbar';
 import FacultyData from '../Faculty/FacultyData.js'
   
 function AdminLanding() {
@@ -15,27 +10,12 @@ function AdminLanding() {
   
     return (
         <>
-        <div style={{
-            display: 'block', width: "100%"
-        }}>
-            <Navbar color="dark" dark expand="md">
-                <NavbarBrand href="/">ADMIN</NavbarBrand>
-                <NavbarToggler onClick={()=>{setIsOpen(!isOpen)}}/>
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/">Publish Notification</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="/">Delete Notification</NavLink>
-                        </NavItem>
-                        {/* <NavItem>
-                            <NavLink className='nav-link' href="/admin/complaints"> Complaint</NavLink>
-                        </NavItem> */}
-                        </Nav>
-                </Collapse>
-            </Navbar>
-        </div >
+        <div className="home">
+            <AdminSidebar />
+        <div className="homeContainer">
+            <AdminNavbar />
+      </div>
+    </div>
         <FacultyData/>
         </>
     );

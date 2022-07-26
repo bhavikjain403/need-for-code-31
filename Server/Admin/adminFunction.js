@@ -16,6 +16,7 @@ router.post('/addTeach',Verifier,async (req,res)=>{
             subject:req.body.subject
         })
         console.log(student)
+        res.status(200).json({msg:'Teacher Added Successfully'})
     } catch (error) {
         console.log(error)
         res.status(500).json({error})

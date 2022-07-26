@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import  "./Register.css";
 
@@ -20,9 +19,18 @@ const TeacherRegister = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/users";
-			const { data: res } = await axios.post(url, data);
-			navigate("/");
+			const url = "http://localhost:8000/admin/addTeach";
+			const res = await fetch(url,{
+                'method':'POST',
+			    'body':{
+                'name':data.name,
+				'userId':data.user,
+				'password':data.password,
+                'subject':data.subject
+			}
+            });
+            const parsedRes =res.json()
+			// navigate("/");
 			console.log(res.message);
 		} catch (error) {
 			if (

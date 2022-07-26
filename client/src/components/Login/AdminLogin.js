@@ -19,15 +19,19 @@ const AdminLogin = () => {
 		setPassword(e.target.value)
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
-			if("bhavik"===user && "jain"===password)
-			{
-				routeChange()
+		const user=await fetch("http://localhost:8000/auth/admin",{
+			'method':'POST',
+			'body':{
+				'userId':user,
+				'password':password
 			}
-			else{
-				setError("Please enter valid Admin ID and password")
-			}
+		})
+		const data =user.json()
+		localStorage.setItem('auth-token',data)
+		localStorage.setItem('type','admin')
+		window.push('/')
 	};
 
 	return (
