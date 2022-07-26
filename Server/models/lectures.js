@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const teacher = require('./teacher')
 
-const studDataSchema = new mongoose.Schema({
+const lectureSchema = new mongoose.Schema({
     teacherId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:teacher,
+        ref:'teacher',
         required:true
     },
     subject:{
@@ -19,4 +19,4 @@ const studDataSchema = new mongoose.Schema({
 
 })
 
-module.exports =  mongoose.model('StudData',studDataSchema)
+module.exports =  mongoose.model('Lecture',lectureSchema)
