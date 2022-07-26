@@ -26,7 +26,6 @@ const teacherSchema = new mongoose.Schema({
         type:String,
         required:true
     }
-   
 })
 
-module.exports = new mongoose.model('Teacher',teacherSchema)
+module.exports =  mongoose.model('Teacher',teacherSchema)

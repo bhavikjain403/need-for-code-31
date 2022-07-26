@@ -1,16 +1,15 @@
 const express = require('express')
-const router = express.Router()
-const bcrpyt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
-const { body , validationResult} = require("express-validator")
-const Admin = require("C:/Users/Soham Rane/OneDrive/Desktop/nfc1/need-for-code-31/Server/models/teacher.js")
-const JWT_SECRET = require("C:/Users/Soham Rane/OneDrive/Desktop/nfc1/need-for-code-31/Server/config.js");
-
+const { body, validationResult } = require('express-validator')
+const bcrpyt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const student = require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/models/student.js')
+const router =express.Router()
+const JWT_SECRET =require('C:/Users/shubham v kurunkar/Desktop/needforcode/need-for-code-31/Server/config.js')
 
 // Creating a new user
 router.post('/auth/student', [
     body('name').isString(),
-    body('user').isEmail(),
+    body('userId').isEmail(),
     body('password').isString()
 ],async (req, res) => {
     const errors = validationResult(req)
@@ -21,17 +20,17 @@ router.post('/auth/student', [
     try {
         
         console.log(req.body)
-        const u = await Admin.findOne({ user: req.body.user })
+        const u = await student.findOne({ user: req.body.user })
         if(u){
             // console.log(u)
             return res.status(400).json({ "msg": "A user with this email already exists" })
         }
         else{
-            //Admin.create returns a promise
+            //student.create returns a promise
             const salt = await bcrpyt.genSalt(10)
             const pass = await bcrpyt.hash(req.body.password,salt)
             
-            let user = await Admin.create({
+            let user = await student.create({
                 name: req.body.name,
                 user: req.body.user,
                 password: pass  
@@ -52,8 +51,8 @@ router.post('/auth/student', [
 })
 
 //login endpoint
-router.post('/auth/student/login', [
-    body('user').isString(),
+router.post('auth/student/login', [
+    body('userId').isString(),
     body('password').exists()
 ],async (req, res) => {
     const errors = validationResult(req)
@@ -62,7 +61,7 @@ router.post('/auth/student/login', [
     }
     try {
         console.log(req.body)
-        let user = await Admin.findOne({ user : req.body.user  })
+        let user = await student.findOne({ user : req.body.user  })
         if(!user){
             console.log('user')
             return res.status(400).json({"msg":"Please login with valid credentials"})
@@ -85,18 +84,6 @@ router.post('/auth/student/login', [
     }
 })
 
-// getting all the data for a user
-// router.post('/fetchall',fetchall,async (req,res)=>{
-//     try {
-//         const userid = req.user.id
-//         const user = await Admin.findById(userid).select("-password")
-//         if(!user){
-//             res.status(400).json({"err":"Bad request"})
-//         }
-//         res.status(200).json(user)
-//     } catch (error) {
-//         console.log(error)
-//         res.status(500).send("Internal Error")
-//     }
-// })
+
 module.exports = router
+

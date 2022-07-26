@@ -26,11 +26,7 @@ const studentSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    marks:{
-        type:Number,
-        required:true
-    },
-
+    
 })
 
-module.exports = new mongoose.model('Student',studentSchema)
+module.exports =  mongoose.model('Student',studentSchema)

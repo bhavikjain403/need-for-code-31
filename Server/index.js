@@ -3,16 +3,25 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const bodyparser = require('body-parser')
 const  app =express() 
-const people =['Bhavik', 'Soham', 'hardik', 'Shubham']
-const port = 8080
+const connect = require('./database')
+const port = 3000
+const adminAuth = require('../Server/routes/Authentication/admin')
+const teacherAuth = require('../Server/routes/Authentication/teacher')
+const studentAuth = require('../Server/routes/Authentication/student')
+const teacher = require('./routes/Teacher/teacherFunction')
+const student = require('../Server/routes/Student/studentFunction')
+const admin = require('../Server/routes/Admin/adminFunction')
 
+connect()
 app.use(express.json())
-app.use(bodyparser.urlencoded({}))
-
-app.get('/',(req,res)=>{
-    res.send(people);
-})
+app.use(bodyparser.urlencoded({extended:true}))
+app.use('/auth/admin',adminAuth)
+app.use('/auth/teacher',teacherAuth)
+app.use('/auth/student',studentAuth)
+app.use('/teacher',teacher)
+app.use('/student',student)
+app.use('/admin',admin)
 
 app.listen(port,()=>{
-    console.log('Server listening on port 8080...')
+    console.log('Server listening on port 3000...')
 })
