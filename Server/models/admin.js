@@ -16,11 +16,7 @@ const adminSchema = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now
-    },
-    teachers :{
-        type:[{
-        name: String
-    }]} 
+    }
 })
 
 module.exports = new mongoose.model('Admin',adminSchema)
