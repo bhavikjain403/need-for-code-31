@@ -8,8 +8,10 @@ import {
     Nav,
     NavbarBrand
 } from 'reactstrap';
-import StudentRegister from './StudentRegister';
-  
+import Calendar from '../Calendar/Calendar';
+import { Link } from 'react-router-dom';
+import StudentData from '../Student/StudentData';
+
 function TeacherLanding() {
     const [isOpen, setIsOpen] = useState(false);
   
@@ -24,16 +26,13 @@ function TeacherLanding() {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="#">Home</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#">Login</NavLink>
+                            <Link className='nav-link' to="/teacher/calendar">Calendar</Link>
                         </NavItem>
                         </Nav>
                 </Collapse>
             </Navbar>
         </div >
-        <StudentRegister/>
+        <StudentData/>
         </>
     );
 }

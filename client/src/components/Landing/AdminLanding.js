@@ -20,15 +20,18 @@ function AdminLanding() {
         }}>
             <Navbar color="dark" dark expand="md">
                 <NavbarBrand href="/">ADMIN</NavbarBrand>
-                <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
+                <NavbarToggler onClick={()=>{setIsOpen(!isOpen)}}/>
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="#">Home</NavLink>
+                            <NavLink href="/">Publish Notification</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="#">Login</NavLink>
+                            <NavLink href="/">Delete Notification</NavLink>
                         </NavItem>
+                        {/* <NavItem>
+                            <NavLink className='nav-link' href="/admin/complaints"> Complaint</NavLink>
+                        </NavItem> */}
                         </Nav>
                 </Collapse>
             </Navbar>

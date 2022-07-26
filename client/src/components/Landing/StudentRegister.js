@@ -36,55 +36,49 @@ const StudentRegister = () => {
 	};
 
 	return (
-		<div className="signup_container">
-			<div className="signup_form_container">
-				<div className="righttt">
-					<form className="form_container" onSubmit={handleSubmit}>
-						<h1>Add Student</h1>
-						<input
-							type="text"
-							placeholder="Name"
-							name="name"
-							onChange={handleChange}
-							value={data.name}
-							required
-							className="input"
-						/>
-						<input
-							type="text"
-							placeholder="Student ID"
-							name="userId"
-							onChange={handleChange}
-							value={data.userId}
-							required
-							className="input"
-						/>
-						<input
-							type="password"
-							placeholder="Password"
-							name="password"
-							onChange={handleChange}
-							value={data.password}
-							required
-							className="input"
-						/>
-                        <input
-							type="text"
-							placeholder="Subject"
-							name="subject"
-							onChange={handleChange}
-							value={data.subject}
-							required
-							className="input"
-						/>
-						{error && <div className="error_msg">{error}</div>}
-						<button type="submit" className="green_btn">
-							Add
-						</button>
-					</form>
-				</div>
-			</div>
-		</div>
+		<form className="form_container" onSubmit={handleSubmit}>
+			<h1>Add Student</h1>
+			<input
+				type="text"
+				placeholder="Name"
+				name="name"
+				onChange={handleChange}
+				value={data.name}
+				required
+				className="input"
+			/>
+			<input
+				type="text"
+				placeholder="Student ID"
+				name="userId"
+				onChange={handleChange}
+				value={data.userId}
+				required
+				className="input"
+			/>
+			<input
+				type="password"
+				placeholder="Password"
+				name="password"
+				onChange={handleChange}
+				value={data.password}
+				required
+				className="input"
+			/>
+			<input
+				type="text"
+				placeholder="Subject"
+				name="subject"
+				onChange={handleChange}
+				value={data.subject}
+				required
+				className="input"
+			/>
+			{error && <div className="error_msg">{error}</div>}
+			<button type="submit" className="green_btn">
+				Add
+			</button>
+		</form>
 	);
 };
 
