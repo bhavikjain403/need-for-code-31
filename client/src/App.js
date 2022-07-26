@@ -1,16 +1,16 @@
 import './App.css';
 import MainLogin from './components/Login/MainLogin';
 import AdminLanding from './components/Landing/AdminLanding';
-import Calendar from './components/Calendar/Calendar'
-import StudentLanding from './components/Landing/StudentLanding';
-import AdminLogin from './components/Login/AdminLogin';
 import TeacherLanding from './components/Landing/TeacherLanding';
 import { BrowserRouter,Route, Routes, Navigate } from 'react-router-dom';
-import GeeksforGeeks from './components/Landing/Complaint';
-import Publish from './components/Notification.js/Publish';
+import Publish from './components/Notification/Publish';
 import { useContext } from 'react';
-import calendar from './contexts/calendar/calendarContext';
+import CompleteCalendar from './components/Calendar/CompleteCalendar';
 import CalendarState from './contexts/calendar/calendarState';
+import Home from './components/StudentDashboard/Home';
+import calendar from './contexts/calendar/calendarContext';
+import Stats from './components/Stats/Stats';
+import Grievance from './components/Grievance/Grievance';
 
 function App() {
   const cal=useContext(calendar)
@@ -22,10 +22,12 @@ function App() {
       <Routes>
           <Route path="/" element={<MainLogin/>}/>
           <Route exact path='/admin' element={<AdminLanding/>}/>
+          <Route exact path='/home' element={<Home/>}/>
+          <Route exact path='/grievance' element={<Grievance/>}/>
+          <Route exact path='/stats' element={<Stats/>}/>
           <Route exact path='/teacher' element={<TeacherLanding/>}/>
-          <Route exact path='/admin/complaints' element={<GeeksforGeeks/>}/>
           <Route exact path='/admin/publish' element={<Publish/>}/>
-          <Route exact path='/teacher/calendar' element={<Calendar/>}/>
+          <Route exact path='/calendar' element={<CompleteCalendar/>}/>
       </Routes>
       </BrowserRouter>
       </CalendarState>

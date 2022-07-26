@@ -14,6 +14,9 @@ const Calendar = () => {
   const [scheduleObj, setScheduleObj] = useState();
 
   const change = (args) => {
+    setScheduleObj({
+      selectedDate: args.value,
+    })
     scheduleObj.selectedDate = args.value;
     scheduleObj.dataBind();
     console.log(scheduleData.every.length)

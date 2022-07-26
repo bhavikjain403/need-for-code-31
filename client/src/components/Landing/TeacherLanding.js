@@ -26,7 +26,7 @@ function TeacherLanding() {
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <Link className='nav-link' to="/teacher/calendar">Calendar</Link>
+                            <Link className='nav-link' to="/calendar">Calendar</Link>
                         </NavItem>
                         </Nav>
                 </Collapse>
