@@ -4,36 +4,33 @@ import { Link, useNavigate } from "react-router-dom";
 import  "./Register.css";
 
 const StudentRegister = () => {
-	const [data, setData] = useState({
-		name: "",
-		userId: "",
-		password: "",
-        subject:"",
-	});
 	const [error, setError] = useState("");
-	const navigate = useNavigate();
 
-	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
-	};
+    const [credentials, setCredentials] = useState({name: "",userId: "", password: "", subject: ""}) 
+    let history = useNavigate();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const url = "http://localhost:8080/api/users";
-			const { data: res } = await axios.post(url, data);
-			navigate("/");
-			console.log(res.message);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
-	};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+            const response = await fetch("http://localhost:8080/teacher/addStu", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token':localStorage.getItem('auth-token')
+                },
+                body: JSON.stringify({name:credentials.name, userId: credentials.userId, password: credentials.password, subject:credentials.subject})
+            });
+            const json = await response.json()
+            console.log(json);
+            history('/student')
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const handleChange = (e)=>{
+        setCredentials({...credentials, [e.target.name]: e.target.value})
+    }
 
 	return (
 		<form className="form_container" onSubmit={handleSubmit}>
@@ -43,7 +40,7 @@ const StudentRegister = () => {
 				placeholder="Name"
 				name="name"
 				onChange={handleChange}
-				value={data.name}
+				value={credentials.name}
 				required
 				className="input"
 			/>
@@ -52,7 +49,7 @@ const StudentRegister = () => {
 				placeholder="Student ID"
 				name="userId"
 				onChange={handleChange}
-				value={data.userId}
+				value={credentials.userId}
 				required
 				className="input"
 			/>
@@ -61,7 +58,7 @@ const StudentRegister = () => {
 				placeholder="Password"
 				name="password"
 				onChange={handleChange}
-				value={data.password}
+				value={credentials.password}
 				required
 				className="input"
 			/>
@@ -70,7 +67,7 @@ const StudentRegister = () => {
 				placeholder="Subject"
 				name="subject"
 				onChange={handleChange}
-				value={data.subject}
+				value={credentials.subject}
 				required
 				className="input"
 			/>

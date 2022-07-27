@@ -20,7 +20,7 @@ router.post('/', [
     try {
         
         console.log(req.body)
-        const u = await teacher.findOne({ user: req.body.user })
+        const u = await teacher.findOne({ userId: req.body.userId })
         if(u){
             // console.log(u)
             return res.status(400).json({ "msg": "A user with this email already exists" })
@@ -59,7 +59,7 @@ router.post('/login', [
     }
     try {
         console.log(req.body)
-        let user = await teacher.findOne({ user : req.body.user  })
+        let user = await teacher.findOne({ userId : req.body.userId  })
         if(!user){
             console.log('user')
             return res.status(400).json({"msg":"Please login with valid credentials"})

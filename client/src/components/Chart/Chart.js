@@ -12,34 +12,48 @@ import {
 
 const data = [
   {
-    name: "Mon",
-    "Normal of hrs Lec": 4 ,
-    "Overtime hrs": 1,
-    amt: 2400,
+    month:"dec",
+    "marks":45,
+    
   },
   {
-    name: "Tue",
-    "Normal of hrs Lec": 2,
-    "Overtime hrs": 2,
-    amt: 2210,
+    month:"dec",
+    "marks":45,
   },
   {
-    name: "Thu",
-    "Normal of hrs Lec": 4,
-    "Overtime hrs": 0,
-    amt: 2290,
+    month:"dec",
+    "marks":45,
   },
   {
-    name: "Fri",
-    "Normal of hrs Lec": 3,
-    "Overtime hrs": 2,
-    amt: 2000,
+    month:"dec",
+   "marks":95,
   },
   {
-    name: "Sat",
-    "Normal of hrs Lec": 4,
-    "Overtime hrs":1,
-    amt: 2181,
+    month:"dec",
+    "marks":45,
+  },
+];
+const data1= [
+  {
+    month:"dec",
+    "marks":45,
+    
+  },
+  {
+    month:"dec",
+    "marks":45,
+  },
+  {
+    month:"dec",
+    "marks":45,
+  },
+  {
+    month:"dec",
+   "marks":95,
+  },
+  {
+    month:"dec",
+    "marks":45,
   },
 ];
 
@@ -49,7 +63,7 @@ const Chart = ({ aspect, title }) => {
         <div className="title">{title}</div>
         
           <div style={{ width: "100%" }} aspect={aspect}>
-            <h4>Hrs of Lecture every Week</h4><br/>
+            <h4>Maths</h4><br/>
             <ResponsiveContainer width="100%" height={200}  >
               <AreaChart
                 width={400}
@@ -64,23 +78,23 @@ const Chart = ({ aspect, title }) => {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" className="chartgrid"/>
-                <XAxis dataKey="name" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Area
                   type="monotone"
-                  dataKey="Normal of hrs Lec"
+                  dataKey="marks"
                   stroke="#8884d8"
                   fill="#8884d8"
                 />
               </AreaChart>
             </ResponsiveContainer>
-            <h4>Overtime Hr of every Week</h4><br/>
+            <h4>Physics</h4><br/>
             <ResponsiveContainer width="100%" height={200} >
               <AreaChart
                 width={400}
                 height={200}
-                data={data}
+                data={data1}
                 syncId="anyId"
                 margin={{
                   top: 10,
@@ -90,12 +104,12 @@ const Chart = ({ aspect, title }) => {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" className="chartgrid"/>
-                <XAxis dataKey="name" />
+                <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
                 <Area
                   type="monotone"
-                  dataKey="Overtime hrs"
+                  dataKey="marks"
                   stroke="#82ca9d"
                   fill="#82ca9d"
                 />

@@ -3,50 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import  "./Register.css";
 
 const TeacherRegister = () => {
-	// const [data, setData] = useState({
-	// 	name: "",
-	// 	userId: "",
-	// 	password: "",
-    //     subject:"",
-	// });
 	const [error, setError] = useState("");
-	// const navigate = useNavigate();
-
-	// const handleChange = ({ currentTarget: input }) => {
-	// 	setData({ ...data, [input.name]: input.value });
-	// };
-
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	try {
-	// 		const url = "http://localhost:8080/admin/addTeach";
-	// 		const res = await fetch(url,{
-    //             'method':'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'auth-token':localStorage.getItem('auth-token')
-    //             },
-	// 		    'body':{
-    //             'name':data.name,
-	// 			'userId':data.user,
-	// 			'password':data.password,
-    //             'subject':data.subject
-	// 		}
-    //         });
-    //         const parsedRes = await res.json()
-	// 		// navigate("/");
-    //         // Navigate to Display Faculty
-	// 		console.log(res.message);
-	// 	} catch (error) {
-	// 		if (
-	// 			error.response &&
-	// 			error.response.status >= 400 &&
-	// 			error.response.status <= 500
-	// 		) {
-	// 			setError(error.response.data.message);
-	// 		}
-	// 	}
-	// };
 
     const [credentials, setCredentials] = useState({name: "",userId: "", password: "", subject: ""}) 
     let history = useNavigate();

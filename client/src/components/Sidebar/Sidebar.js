@@ -2,6 +2,7 @@ import "./Sidebar.css";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { useNavigate } from "react-router-dom";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 //import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -13,9 +14,11 @@ import { Link } from "react-router-dom";
 //import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
 
 const Sidebar = () => {
+  const history=useNavigate()
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.reload();
+    localStorage.removeItem("auth-token");
+    localStorage.removeItem("type");
+    history.push('/')
   };
   return (
     <div className="sidebar">

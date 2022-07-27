@@ -61,7 +61,7 @@ router.post('/login', [
     }
     try {
         console.log(req.body)
-        let user = await student.findOne({ user : req.body.user  })
+        let user = await student.findOne({ userId : req.body.userId  })
         if(!user){
             console.log('user')
             return res.status(400).json({"msg":"Please login with valid credentials"})

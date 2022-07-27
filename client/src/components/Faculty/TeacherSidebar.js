@@ -2,8 +2,8 @@ import "../Sidebar/Sidebar.css";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
 import { useNavigate } from "react-router-dom";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 //import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -13,10 +13,11 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Link } from "react-router-dom";
 //import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
 
-const AdminSidebar = () => {
+const TeacherSidebar = () => {
   const history=useNavigate()
   const handleLogout = () => {
     localStorage.removeItem("auth-token");
+    localStorage.removeItem("type");
     history('/')
   };
   return (
@@ -29,29 +30,48 @@ const AdminSidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">FACULTY</p>
-          <Link to="/addfaculty" style={{ textDecoration: "none" }}>
+          <p className="title">MAIN</p>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <li>
               <DashboardIcon className="icon" />
-              <span>Add Faculty</span>
+              <span>Dashboard</span>
             </li>
           </Link>
 
           <Link to="/staff" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>View Faculty</span>
+              <span>Staff</span>
             </li>
           </Link>
-
-          <p className="title">NOTIFY</p>
-          <Link to="/stats" style={{ textDecoration: "none" }}>
+          <p className="title">STUDENTS</p>
+          <Link to="/studentreg" style={{ textDecoration: "none" }}>
             <li>
-              <InsertChartIcon className="icon" />
-              <span>Publish</span>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Add Student</span>
             </li>
           </Link>
-          <p className="title">ADMIN</p>
+          <Link to="/student" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>View Students</span>
+            </li>
+          </Link>
+          <p className="title">LECTURES</p>
+          <Link to="/calendar" style={{ textDecoration: "none" }}>
+            <li>
+              <CalendarMonthIcon className="icon" />
+              <span>Calendar</span>
+            </li>
+          </Link>
+          <p className="title">LECTURES</p>
+          <Link to="/calendar" style={{ textDecoration: "none" }}>
+            <li>
+              <CalendarMonthIcon className="icon" />
+              <span>Calendar</span>
+            </li>
+          </Link>
+          <p className="title">USER</p>
           <Link to="/profile" style={{ textDecoration: "none" }}>
             <li>
               <AccountCircleOutlinedIcon className="icon" />
@@ -72,4 +92,4 @@ const AdminSidebar = () => {
   );
 };
 
-export default AdminSidebar;
+export default TeacherSidebar;

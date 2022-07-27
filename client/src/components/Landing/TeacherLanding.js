@@ -8,7 +8,8 @@ import {
     Nav,
     NavbarBrand
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import TeacherNavbar from '../Faculty/TeacherNavbar';
+import TeacherSidebar from '../Faculty/TeacherSidebar';
 import StudentData from '../Student/StudentData';
 
 function TeacherLanding() {
@@ -16,23 +17,13 @@ function TeacherLanding() {
   
     return (
         <>
-        <div style={{
-            display: 'block', width: "100%"
-        }}>
-            <Navbar color="dark" dark expand="md">
-                <NavbarBrand href="/">TEACHER</NavbarBrand>
-                <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
-                <Collapse isOpen={isOpen} navbar>
-                    <Nav className="mr-auto" navbar>
-                        <NavItem>
-                            <Link className='nav-link' to="/calendar">Calendar</Link>
-                        </NavItem>
-                        </Nav>
-                </Collapse>
-            </Navbar>
-        </div >
-        <StudentData/>
-        </>
+        <div className="home">
+            <TeacherSidebar />
+        <div className="homeContainer">
+            <TeacherNavbar />
+      </div>
+    </div>
+       </>
     );
 }
   

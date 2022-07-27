@@ -16,6 +16,9 @@ const DataSchema = new mongoose.Schema({
     },
     marks:{
         type:Number,
+    },
+    date:{
+        type:Date
     }
 })
 

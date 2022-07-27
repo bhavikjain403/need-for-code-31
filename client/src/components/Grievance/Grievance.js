@@ -3,22 +3,24 @@ import Navbar from "../Navbar/Navbar";
 import React, { useState } from "react";
 import "./Grievance.css";
 
-const Grievance = () => {
+export default function Grievance(){
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [emailSent, setEmailSent] = useState(false);
+  const [credentials, setCredentials] = useState({studentId: "", subject: "",message: ""}) 
 
-  const submit = () => {
+  const submit = async (e) => {
+    
     if (name && email && message) {
-      const serviceId = "service_rwoi8nb";
-      const templateId = "template_f7ccrcc";
-      const userId = "7t-lC4XeL8x7rG1PV";
-      const templateParams = {
-        name,
-        email,
-        message,
-      };
+        e.preventDefault();
+        const response = await fetch("http://localhost:8080/student/complaint",{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body:JSON.stringify({studentId: credentials.studentId, subject: credentials.subject,complaint: credentials.message})
+        })
 
       setName("");
       setEmail("");
@@ -62,4 +64,3 @@ const Grievance = () => {
   );
 };
 
-export default Grievance;

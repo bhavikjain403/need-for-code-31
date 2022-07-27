@@ -1,32 +1,39 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 const TeacherLogin = () => {
-	const [data, setData] = useState({ user: "", password: "" });
-	const [error, setError] = useState("");
+	const [credentials, setCredentials] = useState({userId: "", password: ""}) 
+	const [error, setError]= useState("")
 
-	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
-	};
+    let history = useNavigate();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const url = "http://localhost:8080/auth/teacher/login";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
-			window.location = "/";
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
-	};
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await fetch("http://localhost:8080/auth/teacher/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({userId: credentials.userId, password: credentials.password})
+        });
+        const json = await response.json()
+        console.log(json);
+        if (json.authToken){
+            localStorage.setItem('auth-token', json.authToken); 
+            localStorage.setItem('type','Teacher'); 
+            history("/teacher");
+
+        }
+        else{
+            alert("Invalid credentials");
+        }
+    }
+
+    const handleChange = (e)=>{
+        setCredentials({...credentials, [e.target.name]: e.target.value})
+    }
+
 
 	return (
 		<div className="login_container">
@@ -35,11 +42,11 @@ const TeacherLogin = () => {
 					<form className="form_container" onSubmit={handleSubmit}>
 						<h1 className="h1-login">Teacher Login</h1>
 						<input
-							type="email"
-							placeholder="Email"
-							name="email"
+							type="text"
+							placeholder="Teacher ID"
+							name="userId"
 							onChange={handleChange}
-							value={data.email}
+							value={credentials.email}
 							required
 							className="input"
 						/>
@@ -48,7 +55,7 @@ const TeacherLogin = () => {
 							placeholder="Password"
 							name="password"
 							onChange={handleChange}
-							value={data.password}
+							value={credentials.password}
 							required
 							className="input"
 						/>
