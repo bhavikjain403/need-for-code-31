@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const teacher = require('./teacher')
+const Teacher = require('./teacher')
 
 const attendanceSchema = new mongoose.Schema({
     attendance :{

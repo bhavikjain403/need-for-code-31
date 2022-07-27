@@ -42,5 +42,21 @@ router.post('/complaint',Verifier,async (req,res)=>{
     }
 })
 
+router.get('/getMarks',Verifier,async (req,res)=>{
+    try {
+        const studId = req.user.id;
+        const marks = await Data.find({
+            studentId:studId,
+            subject:req.body.subject
+        })
+        console.log(marks)
+        res.status(200).json(marks)
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 
 module.exports = router

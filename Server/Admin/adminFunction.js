@@ -4,6 +4,7 @@ const events = require('../models/events');
 const Teacher = require('../models/teacher')
 const router = express.Router()
 const Admin = require('../models/admin')
+const complaints = require('../models/complaints');
 
 //
 router.post('/addTeach',Verifier,async (req,res)=>{
@@ -24,7 +25,7 @@ router.post('/addTeach',Verifier,async (req,res)=>{
     }
 })
 
-// endpoint for teacher to lectures 
+// endpoint for admin to add events 
 router.post('/addEvent',Verifier,async (req,res)=>{
     try {
         const admin = req.user.id;
@@ -47,7 +48,7 @@ router.get('/getAllTeach',Verifier,async (req,res)=>{
         console.log(adminId)
         const admin = await Admin.findById(adminId)
         console.log(admin)
-        const record = await Teacher.find()
+        const record = await Teacher.find().select("-password")
         if(!record){
             console.log('no records added')
             res.json({'msg':'No records have been added for this student'})
@@ -60,4 +61,17 @@ router.get('/getAllTeach',Verifier,async (req,res)=>{
     }
 })
 
+router.get('/getAllComp',Verifier,async (req,res)=>{
+    try {
+        const adminId = req.user.id;
+        console.log(adminId)
+        const complaints = await complaints.find()
+        console.log(complaints)
+        res.json(200).json(complaints)
+    }
+    catch(err){
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
 module.exports = router

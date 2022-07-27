@@ -60,11 +60,11 @@ router.post('/attendance',Verifier,async (req,res)=>{
         const attend = await attendance.create({
             teacherId:teacher,
             attendance: req.body.file,
-            date : Date(req.body.date)
+            date : Date(req.body.date).getMonth()
 
         })
         console.log(attend)
-        res.status(200).json(attend)
+        res.status(200).json(lecture)
     } catch (error) {
         console.log(error)
         res.status(500).json({error})
