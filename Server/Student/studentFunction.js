@@ -46,8 +46,7 @@ router.get('/getMarks',Verifier,async (req,res)=>{
     try {
         const studId = req.user.id;
         const marks = await Data.find({
-            studentId:studId,
-            subject:req.body.subject
+            studentId:studId
         })
         console.log(marks)
         res.status(200).json(marks)

@@ -21,6 +21,7 @@ function TeacherLanding() {
             <TeacherSidebar />
         <div className="homeContainer">
             <TeacherNavbar />
+            <StudentData/>
       </div>
     </div>
        </>

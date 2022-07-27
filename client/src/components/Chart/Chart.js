@@ -1,5 +1,5 @@
 import "./Chart.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -12,52 +12,53 @@ import {
 
 const data = [
   {
-    month:"dec",
+    month:"Jan",
     "marks":45,
     
   },
   {
-    month:"dec",
+    month:"Feb",
     "marks":45,
   },
   {
-    month:"dec",
+    month:"March",
     "marks":45,
   },
   {
-    month:"dec",
+    month:"April",
    "marks":95,
   },
   {
-    month:"dec",
-    "marks":45,
+    month:"May",
+    "marks":60,
   },
 ];
 const data1= [
   {
-    month:"dec",
-    "marks":45,
+    month:"Jan",
+    "marks":55,
     
   },
   {
-    month:"dec",
+    month:"Feb",
+    "marks":95,
+  },
+  {
+    month:"March",
     "marks":45,
   },
   {
-    month:"dec",
-    "marks":45,
+    month:"April",
+   "marks":45,
   },
   {
-    month:"dec",
-   "marks":95,
-  },
-  {
-    month:"dec",
+    month:"May",
     "marks":45,
   },
 ];
 
 const Chart = ({ aspect, title }) => {
+
   return (
       <div className="chart">
         <div className="title">{title}</div>
@@ -78,7 +79,7 @@ const Chart = ({ aspect, title }) => {
                 }}
               >
                 <CartesianGrid strokeDasharray="3 3" className="chartgrid"/>
-                <XAxis dataKey="month" />
+                <XAxis dataKey={data} />
                 <YAxis />
                 <Tooltip />
                 <Area

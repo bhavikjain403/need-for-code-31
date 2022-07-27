@@ -23,9 +23,7 @@ const TeacherSidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Synergy</span>
-        </Link>
+
       </div>
       <hr />
       <div className="center">
@@ -57,11 +55,10 @@ const TeacherSidebar = () => {
               <span>View Students</span>
             </li>
           </Link>
-          <p className="title">LECTURES</p>
-          <Link to="/calendar" style={{ textDecoration: "none" }}>
+          <Link to="/addMarks" style={{ textDecoration: "none" }}>
             <li>
-              <CalendarMonthIcon className="icon" />
-              <span>Calendar</span>
+              <DashboardIcon className="icon" />
+              <span>Add Marks</span>
             </li>
           </Link>
           <p className="title">LECTURES</p>

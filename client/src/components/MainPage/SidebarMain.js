@@ -17,32 +17,29 @@ const SidebarMain = () => {
   const history=useNavigate()
   return (
     <div className="sidebar">
-      <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Synergy</span>
-        </Link>
+      <div className="top" style={{'marginBottom':"150px"}}>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <li>
-              <DashboardIcon className="icon" />
-              <span>Dashboard</span>
-            </li>
-          </Link>
-
-          <Link to="/staff" style={{ textDecoration: "none" }}>
+          <Link to="/adminLogin" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Staff</span>
+              <span>ADMIN LOGIN</span>
             </li>
           </Link>
 
-          <Link to="/stats" style={{ textDecoration: "none" }}>
+          <Link to="/teacherLogin" style={{ textDecoration: "none" }}>
             <li>
-              <InsertChartIcon className="icon" />
-              <span>Stats</span>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>TEACHER LOGIN</span>
+            </li>
+          </Link>
+
+          <Link to="/studentLogin" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>STUDENT LOGIN</span>
             </li>
           </Link>
         </ul>

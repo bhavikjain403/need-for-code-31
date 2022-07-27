@@ -1,22 +1,20 @@
-import "./StudentData.css";
+import "./FacultyData.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect } from "react";
-import { userColumns } from "../../DummyStudent";
-import { useState } from "react";
+import { ColValues, userRows} from "./ColValues";
+import { useEffect, useState, useContext } from "react";
 
-const StudentData = () => {
+const Table = () => {
   const [data, setData] = useState({});
   useEffect( ()=>{
     const a= async ()=>{
       try{
-        const response = await fetch("http://localhost:8080/teacher/getAllStu", {
+        const response = await fetch("http://localhost:8080/student/getMarks", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'auth-token':localStorage.getItem('auth-token')
             },
         });
-        console.log(response)
         const json = await response.json()
         console.log(json);
         setData(json)
@@ -30,7 +28,7 @@ const StudentData = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Student Details
+        Marks
       </div>
       <DataGrid
         className="datagrid"
@@ -44,4 +42,4 @@ const StudentData = () => {
   );
 };
 
-export default StudentData;
+export default Table;

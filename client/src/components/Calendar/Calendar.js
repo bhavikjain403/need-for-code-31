@@ -10,7 +10,6 @@ const PropertyPane = (props) => <div className="mt-5">{props.children}</div>;
 
 const Calendar = () => {
   const cal=useContext(calendar)
-  cal.setCal(scheduleData)
   const [scheduleObj, setScheduleObj] = useState();
 
   const change = (args) => {

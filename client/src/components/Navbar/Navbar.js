@@ -18,7 +18,7 @@ const Navbar = () => {
         <div className="search">
         </div>
         <div className="dp-title">
-          Student Name
+          Student Dashboard
         </div>
         <div className="items">
           

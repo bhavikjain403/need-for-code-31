@@ -17,7 +17,8 @@ export default function Grievance(){
         const response = await fetch("http://localhost:8080/student/complaint",{
           method: 'POST',
           headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'auth-token':localStorage.getItem('auth-token')
           },
           body:JSON.stringify({studentId: credentials.studentId, subject: credentials.subject,complaint: credentials.message})
         })

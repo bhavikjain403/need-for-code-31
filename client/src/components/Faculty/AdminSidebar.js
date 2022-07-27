@@ -22,9 +22,6 @@ const AdminSidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">Synergy</span>
-        </Link>
       </div>
       <hr />
       <div className="center">

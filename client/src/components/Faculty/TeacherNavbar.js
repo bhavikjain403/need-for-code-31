@@ -18,7 +18,7 @@ const TeacherNavbar = () => {
         <div className="search">
         </div>
         <div className="dp-title">
-          Teacher Name
+          Teacher Dashboard
         </div>
         <div className="items">
           

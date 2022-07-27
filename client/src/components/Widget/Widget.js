@@ -13,11 +13,10 @@ const Widget = ({ type }) => {
   const diff = 20;
 
   switch (type) {
-    case "user":
+    case "present":
       data = {
-        title: "No. of Lecture Taken",
+        title: "No. of Days Present",
         ishour: false,
-        link: "See Details",
         value:amount,
         icon: (
           <AutoStoriesIcon
@@ -30,50 +29,17 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "order":
+    case "absent":
       data = {
-        title: "Hours Of Lectures",
-        ishour: true,
-        link: "see details",
-        value:amount,
+        title: "No.of Days Absent",
+        ishour: false,
+        value:diff,
         icon: (
           <AccessTimeIcon
             className="icon"
             style={{
               backgroundColor: "rgba(218, 165, 32, 0.2)",
               color: "goldenrod",
-            }}
-          />
-        ),
-      };
-      break;
-    case "earning":
-      data = {
-        title: "Overtime",
-        ishour: true,
-        link: "See details",
-        value:amount-45,
-        icon: (
-          <MoreTimeIcon
-            className="icon"
-            style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-          />
-        ),
-      };
-      
-      break;
-    case "balance":
-      data = {
-        title: "Rating",
-        isMoney: false,
-        link: "Calculated based on Student's Feedback",
-        value:4.80,
-        icon: (
-          <StarRateIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
             }}
           />
         ),

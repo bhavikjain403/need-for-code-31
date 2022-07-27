@@ -7,11 +7,8 @@ const CompleteCalendar = () => {
   return (
     <div className="home">
       <Sidebar />
-      <div className="homeContainer">
-        <Navbar />
         <span>
         <Calendar/></span>
-      </div>
     </div>
   );
 };
