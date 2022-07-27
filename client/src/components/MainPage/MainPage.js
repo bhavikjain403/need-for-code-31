@@ -1,6 +1,7 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import Box from '@mui/material/Box'
+import Notifications from "./Notifications";
 import SidebarMain from "./SidebarMain";
 //import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -30,8 +31,13 @@ const MainPage = () => {
             <Card style={{background:'transparent'}}>
                 <CardHeader style={{color:'snow', fontSize:"50px"}}>TechyCraft</CardHeader>
             </Card>
+            
+        </div>
+        <div style={{width:"900px", marginLeft:"100px", color:"snow", marginTop:"50px"}}>
+        <Notifications/>
         </div>
         <div className="charts">
+        
           {/* <Featured />
           <Chart title="Metrics For Overtime (Weekly)" aspect={2 / 1} /> */}
         </div>

@@ -14,6 +14,7 @@ import { useContext } from 'react';
 import CompleteCalendar from './components/Calendar/CompleteCalendar';
 import CalendarState from './contexts/calendar/calendarState';
 import Home from './components/StudentDashboard/Home';
+import Table from './components/MarksTable.js/Table';
 import calendar from './contexts/calendar/calendarContext';
 import Stats from './components/Stats/Stats';
 import Grievance from './components/Grievance/Grievance';
@@ -40,6 +41,7 @@ function App() {
           <Route exact path='/home' element={<Home/>}/>
           <Route exact path='/grievance' element={<Grievance/>}/>
           <Route exact path='/stats' element={<Stats/>}/>
+          <Route exact path='/marksTable' element={<marksTable/>}/>
           <Route exact path='/teacher' element={<TeacherLanding/>}/>
           <Route exact path='/admin/publish' element={<Publish/>}/>
           <Route exact path='/calendar' element={<CompleteCalendar/>}/>

@@ -1,4 +1,4 @@
-import "./FacultyData.css";
+// import "./FacultyData.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { ColValues, userRows} from "./ColValues";
 import { useEffect, useState, useContext } from "react";
@@ -34,7 +34,7 @@ const Table = () => {
         className="datagrid"
         getRowId={(row) => row._id}
         rows={data}
-        columns={userColumns}
+        columns={ColValues}
         pageSize={9}
         rowsPerPageOptions={[9]}
       />
