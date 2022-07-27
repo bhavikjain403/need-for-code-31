@@ -6,7 +6,6 @@ const router = express.Router()
 const Admin = require('../models/admin')
 const complaints = require('../models/complaints');
 
-//
 router.post('/addTeach',Verifier,async (req,res)=>{
     try {
         const admin = req.user.id;
@@ -51,7 +50,7 @@ router.get('/getAllTeach',Verifier,async (req,res)=>{
         const record = await Teacher.find().select("-password")
         if(!record){
             console.log('no records added')
-            res.json({'msg':'No records have been added for this student'})
+            res.json({'msg':'No records have been added for this Admin'})
         }
         console.log(record)
         res.status(200).json(record)

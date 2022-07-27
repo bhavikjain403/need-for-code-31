@@ -8,7 +8,6 @@ import {
     Nav,
     NavbarBrand
 } from 'reactstrap';
-import Calendar from '../Calendar/Calendar';
 import { Link } from 'react-router-dom';
 import StudentData from '../Student/StudentData';
 

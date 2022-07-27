@@ -1,57 +1,43 @@
 import "./FacultyData.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows} from "../../DummyTeacher";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import teacher from "../../contexts/Teacher/TeacherContext";
 import { Modal, Button, ModalHeader, ModalBody } from "reactstrap";
 import TeacherRegister from "../Landing/TeacherRegister";
 
 const FacultyData = () => {
   const [data, setData] = useState(userRows);
-  const [modal, setModal] = useState(false);
+  const te=useContext(teacher)
+  useEffect( ()=>{
+    const a= async ()=>{
+      try{
+        const response = await fetch("http://localhost:8080/admin/getAllTeach", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token':localStorage.getItem('auth-token')
+            },
+        });
+        const json = await response.json()
+        te.setTe(json)
+        console.log(json);
+    }catch(error){
+        console.log(error)
+    }
+    }
+    a()
+  },[])
 
-  const toggleModal=()=>{
-    setModal(!modal)
-  }
-
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Remove
-            </div>
-          </div>
-        );
-      },
-    },
-  ];
   return (
     <div className="datatable">
       <div className="datatableTitle">
         Professor
-        <Modal isOpen={modal}>
-            <ModalHeader toggle={toggleModal}>Add New Professor</ModalHeader>
-            <ModalBody><TeacherRegister/></ModalBody>
-        </Modal>
-            <Button outline onClick={toggleModal}>
-            <span className='fa fa-pencil'>Add New Professor</span>
-            </Button>
       </div>
       <DataGrid
         className="datagrid"
-        rows={data}
-        columns={userColumns.concat(actionColumn)}
+        rows={te.te}
+        columns={userColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection

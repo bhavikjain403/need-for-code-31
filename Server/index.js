@@ -11,9 +11,10 @@ const studentAuth = require('./routes/Authentication/student')
 const teacher = require('./Teachers/teacherFunction')
 const admin = require('./Admin/adminFunction')
 const student = require('./Student/studentFunction')
-
+const cors =require('cors')
 
 connect()
+app.use(cors())
 app.use(express.json())
 app.use(bodyparser.urlencoded({extended:true}))
 // app.use('/auth' , teacherAuth)
